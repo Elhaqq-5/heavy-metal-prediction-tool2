@@ -9,7 +9,7 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
-      background-color: #f2f2f2;
+      background-color: #f4f4f4;
     }
     input, button {
       padding: 10px;
@@ -24,13 +24,13 @@
 </head>
 <body>
   <h2>Heavy Metals Prediction Tool</h2>
-  <p>Enter concentration of metals in mg/kg:</p>
+  <p>Enter the metal levels to predict contamination:</p>
 
   <label>Cadmium (Cd):</label><br>
-  <input type="number" id="cd" placeholder="e.g., 0.8"><br>
+  <input type="number" id="cd" placeholder="e.g. 0.8"><br>
 
   <label>Lead (Pb):</label><br>
-  <input type="number" id="pb" placeholder="e.g., 2.5"><br>
+  <input type="number" id="pb" placeholder="e.g. 3.5"><br>
 
   <button onclick="predict()">Predict</button>
 
@@ -43,12 +43,12 @@
       let message = "";
 
       if (isNaN(cd) || isNaN(pb)) {
-        message = "Please enter values for both metals.";
+        message = "Please enter both Cd and Pb values.";
       } else {
         if (cd > 1 || pb > 3) {
-          message = "⚠️ High heavy metal levels detected!";
+          message = "⚠️ High heavy metal contamination detected!";
         } else {
-          message = "✅ Heavy metal levels are within safe limits.";
+          message = "✅ Levels are within safe limits.";
         }
       }
 
