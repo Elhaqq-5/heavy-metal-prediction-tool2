@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Heavy Metal Prediction Tool</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    max-width: 600px;
+    background: #f9f9f9;
+    color: #222;
+  }
+  h1 {
+    text-align: center;
+    color: #336699;
+  }
+  label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+  }
+  button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #336699;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  button:hover {
+    background-color: #224466;
+  }
+  .results {
+    margin-top: 30px;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+  }
+  .metal {
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+  <h1>Heavy Metal Prediction Tool</h1>
+
+  <label for="organicMatter">Organic Matter (%)</label>
+  <input id="organicMatter" type="number" step="0.01" min="0" placeholder="e.g., 3.5" />
+
+  <label for="ph">pH</label>
+  <input id="ph" type="number" step="0.01" min="0" max="14" placeholder="e.g., 6.8" />
+
+  <label for="cec">Cation Exchange Capacity (cmol/kg)</label>
+  <input id="cec" type="number" step="0.01" min="0" placeholder="e.g., 15" />
+
+  <button onclick="predictHeavyMetals()">Predict Heavy Metals</button>
+
+  <div class="results" id="results" style="display:none;">
+    <h2>Predicted Heavy Metal Concentrations (mg/kg)</h2>
+    <div class="metal" id="cd">Cd: </div>
+    <div class="metal" id="cr">Cr: </div>
+    <div class="metal" id="cu">Cu: </div>
+    <div class="metal" id="ni">Ni: </div>
+    <div class="metal" id="pb">Pb: </div>
+    <div class="metal" id="zn">Zn: </div>
+  </div>
+
+  <script>
+    function predictHeavyMetals() {
+      // Get input values
+      const om = parseFloat(document.getElementById('organicMatter').value);
+      const ph = parseFloat(document.getElementById('ph').value);
+      const cec = parseFloat(document.getElementById('cec').value);
+
+      if (isNaN(om) || isNaN(ph) || isNaN(cec)) {
+        alert('Please enter valid numbers for all fields.');
+        return;
+      }
+
+      // Dummy prediction formula (just for demo)
+      // Replace with your own model or formula later!
+      const cd = (om * 0.1 + ph * 0.05 + cec * 0.02).toFixed(2);
+      const cr = (om * 0.2 + ph * 0.03 + cec * 0.04).toFixed(2);
+      const cu = (om * 0.15 + ph * 0.07 + cec * 0.03).toFixed(2);
+      const ni = (om * 0.12 + ph * 0.06 + cec * 0.025).toFixed(2);
+      const pb = (om * 0.18 + ph * 0.04 + cec * 0.05).toFixed(2);
+      const zn = (om * 0.25 + ph * 0.02 + cec * 0.01).toFixed(2);
+
+      // Show results
+      document.getElementById('cd').textContent = 'Cd: ' + cd;
+      document.getElementById('cr').textContent = 'Cr: ' + cr;
+      document.getElementById('cu').textContent = 'Cu: ' + cu;
+      document.getElementById('ni').textContent = 'Ni: ' + ni;
+      document.getElementById('pb').textContent = 'Pb: ' + pb;
+      document.getElementById('zn').textContent = 'Zn: ' + zn;
+
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
